@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void addEdge(vector<int> adj[],int u,int v)
+{
+	adj[u].push_back(v);
+	adj[v].push_back(u);
+}
+
+void DFSRec(vector<int> adj[],int s,bool visited[])
+{
+	visited[s]=true;
+	cout<<s<<" ";
+
+	for(int u:adj[s])
+	{
+		if(visited[u]==false)
+			DFSRec(adj,u,visited);
+	}
+}
+
+void DFS(vector<int> adj[],int v)
+{
+	bool visited[v];
+	for(int i=0;i<v;i++)
+		visited[i]=false;
+	for(int i=0;i<v;i++)
+		if(visited[i]==false)
+		DFSRec(adj,i,visited);
+}
+
+int main()
+{
+	int v=7;
+	vector<int> adj[v];
+	addEdge(adj,0,1);
+	addEdge(adj,0,2);
+	addEdge(adj,1,3);
+	addEdge(adj,2,3);
+	addEdge(adj,4,5);
+	addEdge(adj,4,6);
+	addEdge(adj,5,6);
+	//printEdge(adj,v);
+	DFS(adj,v);
+
+}
+
+// vector<int>dfsOfGraph(int V, vector<int> adj[])
+// {
+//     vector<int> res;
+//     stack<int> tac;
+//     vector<bool> vis(V, false);
+//     tac.push(0);
+//     int curr;
+//     while(!tac.empty())
+//     {
+//         curr = tac.top(); tac.pop();
+//         if(!vis[curr])  
+//         {
+//             res.push_back(curr);
+//             vis[curr] = true;
+//             for(int i = adj[curr].size() - 1; i >= 0; i--)
+//             if(!vis[adj[curr][i]])
+//             tac.push(adj[curr][i]);
+//         }
+//     }
+//     return res;
+// }
