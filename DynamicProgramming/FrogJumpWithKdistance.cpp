@@ -51,3 +51,11 @@ int main(){
     cout << solve(n, height, k) << endl; // Print the result of the solve function
     return 0;
 }
+
+
+
+
+
+
+
+

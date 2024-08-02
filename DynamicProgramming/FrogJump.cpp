@@ -46,12 +46,23 @@ int frogJump(int n,vector<int>& heights){
 		int fs = dp[i-1]+abs(heights[i]+heights[i-1]);
 		int ss = INT_MAX;
 		if(i>1)
-			int ss = dp[i-2]+abs(heights[i],heights[i-2]);
+			int ss = dp[i-2]+abs(heights[i]-heights[i-2]);
 
 		dp[i] = min(fs,ss);
 	}
 	return dp[n-1];
 	
+}
+
+//Leetcode Modified
+int maxJump(vector<int>& heights){
+	int n = heights.size();
+	int res = heights[1];
+
+	for(int i=2;i<n;i++){
+		res = max(res,heights[i]-heights[i-2]);
+	}
+	return res;
 }
 
 int main(){
@@ -62,3 +73,4 @@ int main(){
 	
 	return 0;
 }
+
